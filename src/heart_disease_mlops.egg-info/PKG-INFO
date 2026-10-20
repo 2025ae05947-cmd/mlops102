@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: heart-disease-mlops
+Version: 0.1.0
+Summary: Heart disease prediction MLOps project
+Requires-Python: >=3.11
+Requires-Dist: pandas>=2.2.2
+Requires-Dist: numpy>=1.26.4
+Requires-Dist: scikit-learn>=1.5.2
+Requires-Dist: matplotlib>=3.8.4
+Requires-Dist: seaborn>=0.13.2
+Requires-Dist: mlflow>=2.15.1
+Requires-Dist: fastapi>=0.111.0
+Requires-Dist: uvicorn[standard]>=0.30.1
+Requires-Dist: joblib>=1.4.2
+Requires-Dist: pytest>=8.3.2
+Requires-Dist: httpx>=0.27.0
+Requires-Dist: requests>=2.32.0
