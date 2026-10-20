@@ -1,59 +1,26 @@
-# Heart Disease MLOps Project
+# Screenshot folder
 
-This repository contains an end-to-end MLOps workflow for the Heart Disease UCI dataset. The project includes data acquisition, exploratory analysis, model training, experiment tracking with MLflow, automated tests, Docker packaging, Kubernetes deployment, and a FastAPI serving layer.
+Screenshots captured from the running Docker container:
 
-## Project goals
-- Train and compare multiple classification models for heart disease prediction.
-- Log experiment metadata, metrics, and artifacts with MLflow.
-- Package the best model for reproducible inference.
-- Serve the model via a REST API.
-- Provide deployment and CI/CD configuration for a production-ready workflow.
+- `docker-health.png` — `/health`
+- `docker-features.png` — `/features`
+- `docker-predict-response.png` — sample `/predict` request and response
+- `docker-metrics.png` — Prometheus `/metrics`
 
-## Local setup
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python scripts/download_data.py
-python scripts/eda.py
-python -m heart_disease.train_model
-pytest -q
-```
+Screenshots captured from the local Kubernetes deployment:
+- `kubernetes-health.png` — `/health` served through the Kubernetes Service
+- `kubernetes-predict-response.png` — `/predict` served through the Kubernetes Service
+- `kubernetes-prometheus-targets.png` — API scrape target shown as `UP`
+- `kubernetes-prometheus-graph.png` — Prometheus query for API target health
 
-## Run the API locally
-```bash
-uvicorn heart_disease.app:app --host 0.0.0.0 --port 8000
-```
+The container is published locally on port 8001:
+- http://localhost:8001/docs
+- http://localhost:8001/health
+- http://localhost:8001/features
+- http://localhost:8001/metrics
 
-Example request:
-```bash
-curl -X POST http://localhost:8000/predict \
-  -H "Content-Type: application/json" \
-  -d '{
-    "age": 63,
-    "sex": 1,
-    "cp": 3,
-    "trestbps": 145,
-    "chol": 233,
-    "fbs": 1,
-    "restecg": 0,
-    "thalach": 150,
-    "exang": 0,
-    "oldpeak": 2.3,
-    "slope": 0,
-    "ca": 0,
-    "thal": 1
-  }'
-```
+The local Kubernetes API and Prometheus UIs are reachable via port forwarding:
+- http://localhost:8080/docs
+- http://localhost:9090/targets
 
-## Docker
-```bash
-docker build -t heart-disease-api .
-docker run --rm -p 8000:8000 heart-disease-api
-```
-
-## Deployment
-The project includes a Kubernetes manifest in `kubernetes/deployment.yaml` for deploying the API to a cluster.
-
-## Report
-A summary report is provided in `docs/report.md`.
+The short silent demo video assembled from the Docker and Kubernetes captures is at `../docs/assignment-demo.mp4`. Re-create it after refreshing screenshots with `swift scripts/create_demo_video.swift screenshots docs/assignment-demo.mp4`.
