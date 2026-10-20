@@ -1,18 +1,26 @@
 # Screenshot folder
 
-Use this folder to capture the required assignment screenshots:
+Screenshots captured from the running Docker container:
 
-1. Swagger UI for /predict endpoint
-2. /health endpoint response
-3. /features endpoint response
-4. GitHub Actions workflow result
-5. Docker build output or container run output
-6. Kubernetes deployment verification
+- `docker-health.png` — `/health`
+- `docker-features.png` — `/features`
+- `docker-predict-response.png` — sample `/predict` request and response
+- `docker-metrics.png` — Prometheus `/metrics`
 
-Suggested URLs for capture:
-- http://localhost:8000/docs
-- http://localhost:8000/health
-- http://localhost:8000/features
-- http://localhost:8000/metrics
+Screenshots captured from the local Kubernetes deployment:
+- `kubernetes-health.png` — `/health` served through the Kubernetes Service
+- `kubernetes-predict-response.png` — `/predict` served through the Kubernetes Service
+- `kubernetes-prometheus-targets.png` — API scrape target shown as `UP`
+- `kubernetes-prometheus-graph.png` — Prometheus query for API target health
 
-These can be captured directly from the browser during the local demonstration.
+The container is published locally on port 8001:
+- http://localhost:8001/docs
+- http://localhost:8001/health
+- http://localhost:8001/features
+- http://localhost:8001/metrics
+
+The local Kubernetes API and Prometheus UIs are reachable via port forwarding:
+- http://localhost:8080/docs
+- http://localhost:9090/targets
+
+The short silent demo video assembled from the Docker and Kubernetes captures is at `../docs/assignment-demo.mp4`. Re-create it after refreshing screenshots with `swift scripts/create_demo_video.swift screenshots docs/assignment-demo.mp4`.
